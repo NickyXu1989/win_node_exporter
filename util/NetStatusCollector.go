@@ -1,7 +1,6 @@
 package util
 
 import (
-	"fmt"
 	mapset "github.com/deckarep/golang-set"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/shirou/gopsutil/cpu"
@@ -31,7 +30,6 @@ func (collector *NetStatsCollector)Collect (ch chan <- prometheus.Metric ) {
 	//get all interfaces
 	interfaces, _ := net.Interfaces()
 	for _,i := range interfaces {
-		fmt.Println(net.IOCountersByFile(true,i.Name))
 		interfaceStatus,_ := net.IOCountersByFile(true, i.Name)
 		for _,iStauts := range interfaceStatus {
 			// in case of collecting duplicated interfaces
